@@ -5,12 +5,11 @@ from utils.residual_unit import Residual_Unit
 
 
 class ResidualAttentionNetwork(tf.keras.Model):
-    def __init__(self, p=1, t=2, r=1, classes=10, **kwargs):
+    def __init__(self, p=1, t=2, r=1, **kwargs):
         super(ResidualAttentionNetwork, self).__init__(**kwargs)
         self.p = p
         self.t = t
         self.r = r
-        self.classes = classes
         
         self.conv1 = tf.keras.layers.Conv2D(filters=32, kernel_size=3, strides=1, padding='same', use_bias=False)
         self.conv1_BN = tf.keras.layers.BatchNormalization()
@@ -31,7 +30,7 @@ class ResidualAttentionNetwork(tf.keras.Model):
         self.avgpool = tf.keras.layers.AveragePooling2D(pool_size=4, strides=1)
 
         self.flatten = tf.keras.layers.Flatten()
-        self.dense = tf.keras.layers.Dense(units=self.classes, activation='softmax')
+        self.dense = tf.keras.layers.Dense(units=10, activation='softmax')
         
     def call(self, inputs):
         x = self.conv1(inputs)
