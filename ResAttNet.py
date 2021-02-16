@@ -1,5 +1,6 @@
 
 import argparse
+from os import name
 import tensorflow as tf
 from sklearn.model_selection import train_test_split
 
@@ -61,7 +62,7 @@ def main(model_save=False):
     print(f'test loss : {result[0]}, test accuracy : {result[1]}')
 
     if model_save:
-        resattnet.save_weights('./gan_save/ckpt')
+        resattnet.save_weights('./resattnet_save/ckpt')
 
 if __name__ == '__main__':
     main(model_save)
